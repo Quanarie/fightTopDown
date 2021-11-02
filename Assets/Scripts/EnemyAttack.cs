@@ -14,18 +14,6 @@ public class EnemyAttack : AbilityToAttack
         attackCircle = GetComponent<CircleCollider2D>();
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.TryGetComponent(out playerHealth))
-        {
-            if (Time.time - lastAttackTime < rechargeTime)
-                return;
-
-            playerHealth.ReceiveDamage(damageAmount);
-            lastAttackTime = Time.time;
-        }
-    }
-
     private void Update()
     {
         if (Vector3.Distance(attackGoal.position, transform.position) <= attackCircle.radius)
